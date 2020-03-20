@@ -1,0 +1,136 @@
+package org.comstudy21.homework;
+
+import java.util.Scanner;
+
+public class Self {
+
+	
+	
+	
+	
+	
+
+
+		/*
+		 * 게임만들기 : 높다낮다 게임 구현하기
+		 * 
+		 * 컴퓨터가 난수를 만들어줌 사용자가 정해준 횟수안에 맞추기 ex ) 5번안에 맞추기 1~100사이 숫자 > 줄어든 범위도 제시해서
+		 * 보여주기 ? > 그 범위 밖의 숫자를 이야기하면 게임횟수 카운트 안함 > 중복된 숫자입력시 다시입력받기 카운트는 하지 않음 >
+		 * 입력마다 남은 기회 횟수 표시해주기 > 실패와 성공 멘트 주기 > 게임이 끝난 후 계속 진행 여부 받기 (y/n) >다른 알파벳
+		 * 입력시 다시 입력받기 >입력갑으로 종료하거나 다시 시작하기
+		 * 
+		 */
+
+		static Scanner sc = new Scanner(System.in);
+
+		public static void main(String[] args) {
+
+			boolean conti = true;
+
+			while (conti) {
+
+				int goal = (int) (Math.random() * 100) + 1; 
+				int count = 3;
+				int min = 1;
+				int max = 100;
+				boolean conti3 = true;
+
+				System.out.println("하이로우 게임이 시작되었습니다.");
+				System.out.printf("도전기회는 총 %d회입니다.\n",count);  // 여기까지 셋팅 및 초기화하기
+
+				while (count!=0) {
+
+					System.out.printf("숫자의 범위는 %d~%d사이입니다.", min, max); 
+					System.out.println("정답을 입력해주세요.");
+					int input = sc.nextInt();
+					sc.nextLine();
+					
+					// 여기까지 입력받는 부분
+													
+					
+				
+					if (min <= input && input <= max) {	
+						if (input == goal) {
+							System.out.println("축하합니다 정답입니다.");
+							count=0;
+						} else {
+							count--;
+							if (count == 0) {
+								System.out.printf("틀렸습니다.정답은 %d 였습니다.\n",goal);
+								System.out.println("기회를 모두 사용하셨습니다.");
+								System.out.println("-----GAME OVER-----");
+							} else {
+								if (input > goal) {
+									max = input - 1;
+									System.out.println("하이! 너무 큰 숫자입니다.");
+									System.out.printf("%d번의 기회가 남았습니다.\n", count);
+								} else {
+									min = input + 1;
+									System.out.println("로우! 너무 작은 숫자입니다.");
+									System.out.printf("%d번의 기회가 남았습니다.\n", count);
+								}
+							}
+
+						}
+					} else {
+						System.out.println("잘못된 범위를 입력하셨습니다.");	}
+						//여기까지 평가하는 부분
+				} // while 2번끝
+				
+				
+				
+				while (conti3) {
+					String game;
+					System.out.println("게임을 종료하시겠습니까?");
+					System.out.println("계속 하시려면 y 아니면 n를 입력하여 주십시오");
+
+					game = sc.nextLine();
+
+					if (game.equalsIgnoreCase("y")) {
+						conti = true;
+						conti3 = false;
+					} else {
+						if (game.equalsIgnoreCase("n")) {
+							conti = false;
+							conti3 = false;
+						} else {
+							conti3 = true;
+							System.out.println("잘못된 입력입니다.");
+						}
+
+					}
+				} // while3끝 부분 - 계속할거냐고 물어보는 부분
+
+			} // while conti1번 끝
+
+			System.out.println("이용해주셔서 감사합니다."); 
+
+	
+		
+		
+		
+		
+		}
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+
+
