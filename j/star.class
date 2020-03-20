@@ -1,0 +1,21 @@
+//		*********
+//		**** ****
+//		***   ***
+//		**     **
+//		*       *
+//		**     **
+//		***   ***
+//		**** ****
+//		*********
+//	
+
+
+int line = -1;
+
+for (int i = 0; i < 9; i++) {
+for (int j = 0; j < 9; j++) {
+System.out.print(j > 4 + line || j < 4 - line ? "*" : " ");}
+     System.out.println();
+     line = i < 4 ? line + 1 : line - 1;
+}
+	
