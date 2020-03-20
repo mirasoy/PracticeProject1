@@ -1,0 +1,26 @@
+Scanner sc = new Scanner(System.in);
+		int start, end;
+		System.out.println("시작단입력");
+		start = sc.nextInt();
+		System.out.println("종료단입력");
+		end = sc.nextInt();
+		
+		for (int dan = start; dan <= end; dan += 3) {
+
+			for (int i = 0; i < 3; i++) {
+
+				if (dan + i  < end+1) {
+					System.out.printf("%5d단\t\t", dan + i);
+				}
+			}
+			System.out.println();
+
+			for (int j = 1; j <= 9; j++) {
+				for (int k = 0; k < 3; k++) {
+					if (dan + k  < end+1) {
+						System.out.printf("%d*%d=%5d\t", dan + k, j, (dan * j));
+					}
+
+				}
+				System.out.println();
+			}
