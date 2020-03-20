@@ -1,0 +1,51 @@
+
+	int a,b,c;
+		int max = 0, mid = 0, min=0;
+		
+		System.out.println("첫번째 숫자를 입력하세요 ");
+		a = sc.nextInt();
+
+		System.out.println("두번째 숫자를 입력하세요 ");
+		b = sc.nextInt();
+
+		System.out.println("세번째 숫자를 입력하세요 ");
+		c = sc.nextInt();
+
+		if (a > b) {
+			if (c > a) {
+				max = c;
+				mid = a;
+				min = b;
+			} else {
+				if (c > b) {
+					max = a;
+					mid = c;
+					min = b;
+				} else {
+					max = a;
+					mid = b;
+					min = c;
+				}
+			}
+
+		} else {
+			if (a > c) {
+				max = b;
+				mid = a;
+				min = c;
+			} else {
+				if (b > c) {
+					max = b;
+					mid = c;
+					min = a;
+				} else {
+					max = c;
+					mid = b;
+					min = a;
+				}
+			}
+		}
+
+		  System.out.println(min);
+		  System.out.println(mid);
+		  System.out.println(max);
