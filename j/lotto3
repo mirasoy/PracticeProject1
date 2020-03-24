@@ -1,0 +1,36 @@
+package java_day7;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class HomeWork0324_2 {
+	static Random rd = new Random();
+
+	public static void main(String[] args) {
+
+		int[] lotto = new int[6];
+
+		int ok = 0;
+		while (ok != 15) {
+			ok = 0;
+			for (int i = 0; i < 6; i++) {
+				lotto[i] = 1 + rd.nextInt(6);
+			}
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					if (!(i > j || i == j)) {
+						if (lotto[i] != lotto[j]) {
+							ok++;
+						}
+					}
+
+				}
+			}
+
+		}
+
+		System.out.println(Arrays.toString(lotto));
+
+	}
+}
+//정말 
