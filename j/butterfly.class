@@ -1,0 +1,40 @@
+package java_day7;
+
+import java.util.Arrays;
+
+public class H_W2 {
+	public static void main(String[] args) {
+
+		int[][] arr = new int[5][5];
+		int k = 3;
+		int koo = 1;
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = (3 - k); j < k + 2; j++) {
+				
+				arr[j][i] = koo++;
+				
+				
+			}
+
+			k = (i < 2) ? (k - 1) : (k + 1);
+
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		 for (int i = 0; i < arr.length; i++) {
+		 for(int j = 0 ; j < arr.length; j++) {
+		 System.out.print(arr[i][j] == 0 ? "\t" : arr[i][j] + "\t");}
+		 System.out.println();
+		 }
+
+	}
+}
