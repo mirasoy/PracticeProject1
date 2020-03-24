@@ -1,0 +1,34 @@
+package java_day7;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class HomeWork0324_3 {
+	static Random rd = new Random();
+
+	 
+	public static void main(String[] args) {
+
+				
+		
+		int max = 50;
+		
+		int[] card = new int[max];
+		int[] lotto = new int[6];
+		
+		for (int i = 1; i < max; i++) {card[i] = i+1;}
+		
+		for (int i = 0; i < 6; i++) {
+			
+			lotto[i] = 1 + rd.nextInt(max-1);
+			while(card[lotto[i]] == 0){
+				lotto[i] = 1 + rd.nextInt(6);	
+			}
+			card[lotto[i]] = 0;
+		}
+		
+		System.out.println(Arrays.toString(lotto));
+    
+    
+    
+    //후보카드군을 만들어서 그 카드가 없으면 다시 시작하게만드는... 복잡시러라..
