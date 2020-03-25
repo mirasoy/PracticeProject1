@@ -1,0 +1,320 @@
+package org.comstudy21.ch03;
+
+import java.util.Scanner;
+
+public class Test_2 {
+
+	static Scanner sc = new Scanner(System.in);
+
+	
+	public static boolean inRect(int x, int y, int rectx1, int recty1, int rectx2, int recty2){
+		if((x>=rectx1&& x <= rectx2)&& (y >= recty1 && y <= recty2))
+			return true;
+		else return false;
+			
+	}
+	
+	public static void main(String[] args) {
+		
+		
+System.out.print("실행할 예제 번호를 입력하세요 >>");
+		
+		int some = sc.nextInt();
+		
+		
+		switch(some){
+		case 1 :t1(null);
+		break;
+		case 2 :t2(null);
+		break;
+		case 3 :t3(null);
+		break;
+		case 4 :t4(null);
+		break;
+		case 5 :t5(null);;
+		break;
+		case 6 :t6(null);
+		break;
+		case 7 :t7(null);
+		break;
+		case 8 :t8(null);
+		break;
+		
+		case 11 :t11(null);
+		break;
+		case 12 :t12(null);
+		break;
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void t12(String[] args) {
+		System.out.print("연산>>");
+		
+		int x = sc.nextInt();
+		String t = sc.next();
+		int y = sc.nextInt();
+		
+		switch(t){
+		case "*" :
+		{System.out.printf("%d%s%d의 계산 결과는%d",x,t,y,x*y);}	
+		break;
+				
+		case "+" :
+		{System.out.printf("%d%s%d의 계산 결과는%d",x,t,y,x+y);}	
+		break;
+		
+		case "-" :
+		{System.out.printf("%d%s%d의 계산 결과는%d",x,t,y,x-y);}	
+		break;
+				
+		case "/" :
+		{if(y==0){System.out.println("0으로 나눌수없습니다.");}
+		else{System.out.printf("%d%s%d의 계산 결과는%d",x,t,y,x*y);}	
+		break;}
+		}
+		
+		
+	
+	}
+		
+	
+	
+	public static void t11(String[] args) {
+		System.out.print("달을 입력하시오 1~12월>>");
+		int x = sc.nextInt();
+		
+		if(!(0 < x  && x < 13 )){
+			System.out.println("잘못입력");
+		}
+		
+		switch(x){
+		case 3 : case 4 :case 5 :
+			System.out.println("봄");break;		
+		case 6 : case 7 :case 8 :
+			System.out.println("여름");break;
+		case 9 : case 10 :case 11 :
+			System.out.println("가을");break;
+		case 1 : case 2 :case 12 :
+			System.out.println("겨울");break;
+			
+		
+		
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	public static void t8(String[] args) {
+		
+		System.out.print("점(x,y)과 점(x2,y2)의 좌표를 입력하세요");
+		int x = sc.nextInt();
+		int y = sc.nextInt();
+		int x2 = sc.nextInt();
+		int y2 = sc.nextInt();
+		
+		if(inRect(x,y,100,100,200,200)){System.out.println("충돌");}
+		else if(inRect(x2,y2,100,100,200,200)){System.out.println("충돌");}else
+		{System.out.println("안충돌");}
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	public static void t7(String[] args) {
+
+		System.out.print("점(x,y)의 좌표를 입력하세요");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+
+		if (100 <= a && a <= 200) {
+			if (100 <= b && b <= 200) {
+				System.out.printf("%d,%d는 안에있습니다.", a, b);
+			} else {
+				System.out.printf("%d,%d는 벗어났습니다.", a, b);
+			}
+		} else {
+			System.out.printf("%d,%d는 벗어났습니다.", a, b);
+		}
+
+	}
+
+	public static void t6(String[] args) {
+
+		System.out.print("1-99사이 정수를 입력하세요");
+		int a = sc.nextInt();
+		int jjac = 0;
+
+		if (a / 10 == 3 || a / 10 == 6 || a / 10 == 9) {
+			jjac++;
+		}
+		if (a % 10 == 3 || a % 10 == 6 || a % 10 == 9) {
+			jjac++;
+		}
+
+		if (jjac > 0) {
+			System.out.print("박수 ");
+		}
+		for (int i = 0; i < jjac; i++) {
+			{
+				System.out.print("짝");
+			}
+		}
+
+	}
+
+	public static void t5(String[] args) {
+
+		System.out.print("정수 3개를 입력하세요");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+
+		int max;
+		int sum;
+		if (a > b) {
+			if (b > c) {
+				max = a;
+				sum = b + c;
+			} else if (a > c) {
+				max = a;
+				sum = b + c;
+			} else {
+				max = c;
+				sum = b + a;
+			}
+		} else if (a > c) {
+			max = b;
+			sum = c + a;
+		} else if (c > b) {
+			max = c;
+			sum = b + a;
+		} else {
+			max = b;
+			sum = c + a;
+
+		}
+
+		if (max > sum) {
+			System.out.println("불가능");
+		} else {
+			System.out.println("가능합니다");
+		}
+	}
+
+	public static void t4(String[] args) {
+
+		System.out.print("정수 3개를 입력하세요");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		int c = sc.nextInt();
+
+		System.out.print("중간값은");
+
+		if (a > b) {
+			if (b > c) {
+				System.out.print(b);
+			} else if (a > c) {
+				System.out.print(c);
+			} else {
+				System.out.print(a);
+			}
+		} else if (a > c) {
+			System.out.print(a);
+		} else if (c > b) {
+			System.out.print(b);
+		} else {
+			System.out.print(c);
+		}
+
+	}
+
+	public static void t3(String[] args) {
+		System.out.print("원화를 입력하세요 >>");
+		int won = sc.nextInt();
+		if ((won / 50000) > 0) {
+			System.out.println("5만원권 " + won / 50000 + "매");
+			won -= won / 50000 * 50000;
+		}
+		if ((won / 10000) > 0) {
+			System.out.println("만원권 " + won / 10000 + "매");
+			won -= won / 10000 * 10000;
+		}
+		if ((won / 1000) > 0) {
+			System.out.println("천원권 " + won / 1000 + "매");
+			won -= won / 1000 * 1000;
+		}
+		if ((won / 500) > 0) {
+			System.out.println("5백원 " + won / 500 + "개");
+			won -= won / 500 * 500;
+		}
+		if ((won / 100) > 0) {
+			System.out.println("백원 " + won / 100 + "매");
+			won -= won / 100 * 100;
+		}
+		if ((won / 50) > 0) {
+			System.out.println("5십원 " + won / 50 + "개");
+			won -= won / 50 * 50;
+		}
+		if ((won / 10) > 0) {
+			System.out.println("십원 " + won / 10 + "매");
+			won -= won / 10 * 10;
+		}
+		if ((won / 1) > 0) {
+			System.out.println("일원 " + won / 1 + "매");
+			won -= won / 1 * 1;
+		}
+
+	}
+
+	public static void t2(String[] args) {
+		System.out.print("2자리의 정수입력(10~99) >>");
+		int num = sc.nextInt();
+
+		if (num / 10 == num % 10) {
+			System.out.println("yes, 10의 자리와 1의자리가 같습니다.");
+		} else {
+			System.out.println("no~ e다름");
+		}
+
+	}
+
+	public static void t1(String[] args) {
+
+		System.out.print("원화를 입력하세요(단위 원) >>");
+		int won = sc.nextInt();
+		double dollor = won / 1100.;
+		System.out.printf("%d원은 %.1f$입니다", won, dollor);
+
+	}
+}
