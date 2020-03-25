@@ -1,0 +1,356 @@
+package org.comstudy21.ch03;
+
+import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Test_1 {
+
+	static Scanner sc = new Scanner(System.in);
+	static Random rd = new Random();
+
+	
+	
+	
+	public static void main(String[] args) {
+		System.out.print("실행할 예제 번호를 입력하세요 >>");
+		
+		int some = sc.nextInt();
+		
+		
+		switch(some){
+		case 2 :t2(null);
+		break;
+		case 3 :t3(null);
+		break;
+		case 4 :t4(null);
+		break;
+		case 5 :t5(null);;
+		break;
+		case 6 :t6(null);
+		break;
+		case 7 :t7(null);
+		break;
+		case 8 :t8(null);
+		break;
+		case 9 :t9(null);
+		break;
+		case 10 :t10(null);
+		break;
+		case 13 :t13(null);
+		break;
+		case 14 :t14(null);
+		break;
+		case 15 :t15(null);
+		break;
+		case 16 :t16(null);
+		break;
+		}
+		
+				
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public static void t16(String[] args) {
+
+		String[] game = { "가위", "바위", "보" };
+		String input = "";
+		int win = 0;
+		while (win!=11) {
+			
+			
+			System.out.println("가위 바위 보 게임을 합니다. ");
+			System.out.print("가위 바위 보!!:");
+			sc.nextLine(); 
+			input = sc.nextLine();
+			int com1 = rd.nextInt(3);
+
+			win = 0;
+
+			if (input.equals("가위")) {
+				win = com1;
+			}
+			if (input.equals("바위")) {
+				win = 5 - com1;
+			}
+			if (input.equals("보")) {
+				win = 10 - com1;
+			}
+			if (input.equals("그만")) {
+				 win=11;
+				 System.out.println("종료");
+				 break;
+			}
+			System.out.println("컴퓨터 : " + game[com1] + "  유저 :" + input);
+			
+			switch (win) {
+
+			case 0:
+			case 4:
+			case 8:
+
+				System.out.println("비겼다");
+				break;
+
+			case 1:
+			case 3:
+			case 10:
+				System.out.println("졌다");
+				break;
+
+			case 2:
+			case 5:
+			case 9:
+				System.out.println("이겼다");
+				break;
+
+			}
+
+		}
+
+	}
+
+	public static void t15(String[] args) {
+
+		for (int i = 0; i < 3; i++) {
+			int n, m;
+
+			try {
+				System.out.print("곱하고자 하는 두 숫자입력>>");
+
+				n = sc.nextInt();
+				m = sc.nextInt();
+
+				System.out.print(n + "X" + m + "=" + n * m);
+				break;
+
+			} catch (InputMismatchException e) {
+				System.out.println("실수입력 불가. 정수를입력하시오");
+				sc.nextLine();
+			}
+		}
+
+	}
+
+	public static void t14(String[] args) {
+
+		String course[] = { "Java", "C++", "HTML", "컴퓨터구조", "안드로이드" };
+		int score[] = { 95, 88, 76, 62, 55 };
+
+		// System.out.print("과목이름>>");
+		String input = "";
+		boolean no = true;
+		while (!input.equals("그만")) {
+			no = true;
+			System.out.print("과목이름>>");
+			input = sc.nextLine();
+			for (int i = 0; i < course.length; i++) {
+
+				if (course[i].equalsIgnoreCase(input)) {
+					System.out.println(course[i] + "의 점수는 " + score[i]);
+					no = false;
+				}
+
+			}
+			if (no) {
+				System.out.println("없는과목입니다.");
+				no = true;
+
+			}
+
+		}
+
+	}
+
+	public static void t13(String[] args) {
+		for (int i = 0; i < 100; i++) {
+
+			if ((i % 10 == 3 || i % 10 == 6 || i % 10 == 9) && (i / 10 == 3 || i / 10 == 6 || i / 10 == 9)) {
+				System.out.print(i + "박수 짝짝");
+				System.out.println();
+			} else if (i / 10 == 3 || i / 10 == 6 || i / 10 == 9) {
+				System.out.print(i + "박수 짝");
+				System.out.println();
+			} else if (i % 10 == 3 || i % 10 == 6 || i % 10 == 9) {
+				System.out.print(i + "박수 짝");
+				System.out.println();
+			}
+
+		}
+
+	}
+
+	public static void t10(String[] args) {
+		int[][] arr = new int[4][4];
+		int[][] check = new int[4][4];
+		int cnt = 0;
+
+		while (cnt < 10) {
+			int i = rd.nextInt(4);
+			int j = rd.nextInt(4);
+			if (check[i][j] == 0) {
+				arr[i][j] = rd.nextInt(10) + 1;
+				check[i][j] = 1;
+				cnt++;
+			}
+
+		}
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[i].length; j++) {
+				System.out.print(arr[i][j] + "\t");
+			}
+			System.out.println();
+		}
+
+	}
+
+	public static void t9(String[] args) {
+
+		int[][] arr = new int[4][4];
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[i].length; j++) {
+				arr[i][j] = rd.nextInt(10) + 1;
+				System.out.print(arr[i][j] + "\t");
+			}
+			System.out.println();
+		}
+
+	}
+
+	public static void t8(String[] args) {
+
+		System.out.print("정수 몇개? ");
+		int[] arr = new int[sc.nextInt()];
+
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = rd.nextInt(100) + 1;
+			for (int j = 0; j < i; j++) {
+				if (arr[i] == arr[j]) {
+					i--;
+				}
+			}
+
+		}
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + "  ");
+		}
+
+	}
+
+	public static void t7(String[] args) {
+
+		int[] arr = new int[10];
+		System.out.print("랜덤한 정수들 : ");
+
+		int sum = 0;
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = rd.nextInt(10) + 1;
+			System.out.print(arr[i] + " ");
+			sum += arr[i];
+		}
+
+		System.out.print("\n평균은 " + (sum / (double) arr.length));
+
+	}
+
+	public static void t6(String[] args) {
+
+		int[] unit = { 50000, 10000, 1000, 500, 100, 50, 10, 1 };
+
+		int input;
+		System.out.print("금액을 입력하시오>>");
+		input = sc.nextInt();
+
+		while (input > 0) {
+
+			for (int i = 0; i < unit.length; i++) {
+				if (input / unit[i] != 0) {
+					System.out.println(unit[i] + "원짜리 :" + input / unit[i] + "개");
+					input -= (input / unit[i]) * (unit[i]);
+				}
+
+			}
+		}
+
+	}
+
+	public static void t5(String[] args) {
+
+		int[] arr = new int[10];
+
+		System.out.print("양의 정수 10개를 입력하세오>>");
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = sc.nextInt();
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] % 3 == 0) {
+				System.out.print("3의 배수는" + arr[i] + "  ");
+			}
+		}
+
+	}
+
+	public static void t4(String[] args) {
+
+		String input;
+		System.out.print("소문자 알파벳 하나를 입력하시오>>");
+		input = sc.next();
+
+		int al;
+		al = input.charAt(0);
+
+		for (int i = al - 96; i > 0; i--) {
+			for (int j = 0; j < i; j++) {
+
+				System.out.printf("%c", (j + 97));
+
+			}
+			System.out.println();
+		}
+
+	}
+
+	public static void t3(String[] args) {
+
+		int input;
+		System.out.print("정수를 입력하시오>>");
+		input = sc.nextInt();
+
+		for (int i = input; i > 0; i--) {
+			for (int j = 0; j < i; j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+
+	}
+
+	public static void t2(String[] args) {
+
+		int[][] n = { { 1 }, { 1, 2, 3 }, { 1 }, { 1, 2, 3, 4 }, { 1, 2 } };
+
+		for (int i = 0; i < n.length; i++) {
+			for (int j = 0; j < n[i].length; j++) {
+
+				System.out.print(n[i][j] + "  ");
+			}
+			System.out.println();
+		}
+
+	}
+
+}
