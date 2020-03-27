@@ -1,0 +1,195 @@
+package org.hw;
+
+import java.util.Scanner;
+
+
+
+class People {
+
+	private int idx;
+	private String name;
+	private String phone;
+
+	private int total = 0;
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public People() {
+		this(0, "no-name", "no-phone");
+
+	}
+
+	public People(int idx, String name, String phone) {
+		this.idx = idx;
+		this.name = name;
+		this.phone = phone;
+
+	}
+
+	public void addTotal() {
+		total++;
+	}
+
+	public void mintotal() {
+		total--;
+	}
+
+	@Override
+	public String toString() {
+		return "N0." + idx + ", 이름 : " + name + ", 번호 : " + phone;
+	}
+
+}
+
+class Info {
+
+}
+
+class menu {
+	Scanner sc = new Scanner(System.in);
+	private int choiceNum;
+
+	public menu() {
+
+		choice();
+	}
+
+	public void choice() {
+		System.out.println("☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎");
+		System.out.println("기능을 선택하세요.");
+		System.out.println("1.입력 2.출력 3.검색 4.수정 5.삭제 6.종료");
+		choiceNum = sc.nextInt();
+		run(choiceNum);
+	}
+
+	public void run(int cho) {
+		switch (cho) {
+		case 1:
+			new Input();
+			break;
+		case 2:
+			new Output();
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		default:
+			err();
+		}
+
+	}
+
+	public void err() {
+		System.out.println("잘못된 입력입니다. 처음으로 돌아갑니다.");
+		choice();
+	}
+
+}
+
+class Input {
+	Scanner sc = new Scanner(System.in);
+
+	People p = new People();
+	private People[] pArr = new People[100];
+	private int top = 0;
+
+	public People[] getpArr() {
+		return pArr;
+	}
+
+	public People getpArr(int i) {
+		return pArr[i];
+	}
+
+	public int getTop() {
+		return top;
+	}
+
+	public Input() {
+		run();
+	}
+
+	public void run() {
+
+		People p = new People();
+		p.setIdx(top);
+		// sc.nextLine();
+		System.out.println(top);
+		System.out.println("이름 : ");
+		p.setName(sc.nextLine());
+		System.out.println("번호 : ");
+		p.setPhone(sc.nextLine());
+		System.out.print("입력완료");
+		System.out.println(top);
+
+		pArr[top] = p;
+
+		top++;
+		new menu();
+	}
+}
+
+class Output {
+
+	People pArr = new People();
+
+	public Output() {
+		run();
+	}
+
+	public void run() {
+
+		Input input = new Input();
+
+		for (int i = 0; i < input.getTop(); i++) {
+			System.out.println(input.getpArr(i));
+		}
+
+		new menu();
+
+	}
+
+}
+
+public class MainRun {
+	public static void main(String[] args) {
+
+		new menu();
+	}
+
+}
