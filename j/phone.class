@@ -9,7 +9,6 @@ public class Ch04Ex06 {
 	private People[] pArr = new People[MAX];
 	private int top = 0;
 	private int seq = 0; // 감소없이 계속 증가 idx에 사용
-	private int thatnum = 0;
 	public static final Scanner sc = new Scanner(System.in);
 
 	public Ch04Ex06() {
@@ -93,89 +92,45 @@ public class Ch04Ex06 {
 
 	}
 
-	public void search2() {
-
-		
-		
-		
-		if (seq == 0) {
-			System.out.println("주소록이 비어있습니다");
-			main(null);
-
-		} else {
-
-			System.out.print("검색할 이름을 입력하세요: ");
-			String name = sc.nextLine();
-
-			int j = -1;
-			
-			
-			for (int i = 0; i < seq; i++) {
-				if (pArr[i].getName().equals(name)) {
-					thatnum = i;
-					j = i;
-					System.out.println(pArr[thatnum]);
-				}
-			}
-			
-			
-			if (j == -1) {
-				System.out.println("찾을수 없습니다. 다시검색해주세요");
-				search();
-				return;}
-
-		}
-		
-
-	}
-
 	public void search(){
-		
+		if(top==0){System.out.println("주소록이비어있습니다.");return;}
 		System.out.println("검색할 이름을 입력하세요.");
 		String findname = sc.nextLine();
-		boolean here = false;
-		int you =-1;
+		
+		
+		
+		boolean findit = false;
 		for(int i = 0 ; i < top ; i++){
-			People search = pArr[i]; 
-			if(search.getName().equals(findname)){
-			 you = i;
-			 
-			 here = true;
+			People someone = new People();
+			if(pArr[i].getName().equals(findname)){
+				someone = pArr[i]; findit =true;
+				System.out.println(someone.toString());
+				
 			}
 		}
-		
-		if(here)
-		{System.out.println(pArr[you]);you =-1;}
-		else{System.out.println("존재하지 않는 이름입니다.");main(null);}		
-		
+		if(!findit){System.out.println("찾을수없습니다.");}
 		
 	}
 		
-		
-		
-		
-		
-	
-	
 	public void modify() {
-	
+		if(top==0){System.out.println("주소록이비어있습니다.");return;}
 		System.out.println("검색할 이름을 입력하세요.");
 		String findname = sc.nextLine();
-		boolean here = false;
-		int you =-1;
+		
+		
+		
+		boolean findit = false;
+		
+		
+		People someone = new People();
 		for(int i = 0 ; i < top ; i++){
-			People search = pArr[i]; 
-			if(search.getName().equals(findname)){
-			 you = i;
-			 
-			 here = true;
+			if(pArr[i].getName().equals(findname)){
+				someone = pArr[i]; findit =true;
+				System.out.println(someone.toString());
+				
 			}
 		}
-		
-		if(here)
-		{System.out.println(pArr[you]);you =-1;}
-		else{System.out.println("존재하지 않는 이름입니다.");main(null);}		
-		
+		if(!findit){System.out.println("찾을수없습니다.");}
 		
 	
 		System.out.print("수정할 부분을 입력하세요: \n 1.이름 2.번호 ");
@@ -186,61 +141,63 @@ public class Ch04Ex06 {
 		case 1:
 			System.out.print("변경할 이름을 입력하세요");
 			String newname = sc.nextLine();
-			pArr[you].setName(newname);
+			someone.setName(newname);
 
 			break;
 		case 2:
 			System.out.print("변경할 번호을 입력하세요");
 			String newphone = sc.nextLine();
-			pArr[you].setPhone(newphone);
+			someone.setPhone(newphone);
 
 			break;
 		default:
 			System.out.println("잘못입력하셨습니다.");
-			modify();
 
 		}
 
 	}
-	// 수정이나 삭제는 검색을 먼저 거친다음에
 
 	public void delete() {
+		if(top==0){System.out.println("주소록이비어있습니다.");return;}
 		System.out.println("검색할 이름을 입력하세요.");
 		String findname = sc.nextLine();
-		boolean here = false;
-		int you =-1;
+		People someone = new People();
+		boolean findit = false;
+		
 		for(int i = 0 ; i < top ; i++){
-			People search = pArr[i]; 
-			if(search.getName().equals(findname)){
-			 you = i;
-			 here = true;
+			if(pArr[i].getName().equals(findname)){
+				someone = pArr[i]; findit =true;
+				System.out.println(someone.toString());
+				
+				
+				System.out.println("이 주소록을 삭제할까요? y/n");
+
+				String answer = sc.nextLine();
+				switch (answer) {
+				case "y":
+				case "Y":
+					for (int j = i ; j < top; j++) {
+						pArr[j] = pArr[j + 1];
+						
+					}top--;
+					System.out.println("삭제완료");
+					break;
+				case "n":
+				case "N":
+					System.out.println("삭제를 취소합니다");
+					break;
+				default:
+					System.out.println("잘못된입력입니다.다시 검색해주세요");
+					delete();
+				}
 			}
 		}
+		if(!findit){System.out.println("찾을수없습니다.");}
 		
-		if(here)
-		{System.out.println(pArr[you]);}
-		else{System.out.println("존재하지 않는 이름입니다.");main(null);}		
-
-		System.out.println("이 주소록을 삭제할까요? y/n");
-
-		String answer = sc.nextLine();
-		switch (answer) {
-		case "y":
-		case "Y":
-			for (int i = you; i < top; i++) {
-				pArr[i] = pArr[i + 1];
-				
-			}top--;
-			System.out.println("삭제완료");
-			break;
-		case "n":
-		case "N":
-			System.out.println("삭제를 취소합니다");
-			break;
-		default:
-			System.out.println("잘못된입력입니다.다시 검색해주세요");
-			delete();
-		}
+		
+		
+		
+		
 	}
 
 	public static void main(String[] args) {
