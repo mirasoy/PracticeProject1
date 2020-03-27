@@ -1,0 +1,88 @@
+package java_day10;
+
+class Music {
+
+	private String Singer;
+	private String Song;
+
+	public Music() {
+		this("2", "3");
+	}
+
+	public Music(String singer, String song) {
+		Singer = singer;
+		Song = song;
+	}
+
+	public String getSinger() {
+		return Singer;
+	}
+
+	public void setSinger(String singer) {
+		Singer = singer;
+	}
+
+	public String getSong() {
+		return Song;
+	}
+
+	public void setSong(String song) {
+		Song = song;
+	}
+
+	public void play() {
+		System.out.printf("%s의 %s를 실행중입니다.\n", Singer, Song);
+	}
+}
+
+class MusicPlayer {
+
+	private String[][] list = new String[7][2];
+	private int idx = 0;
+
+	public void add(Music ms) {
+
+		if (idx >= list.length) {
+			System.out.println("용량이가득찼습니다 ! 저장실패!.");
+			System.out.print("\n");
+		} else {
+			list[idx][0] = ms.getSinger();
+			list[idx][1] = ms.getSong();
+			idx++;
+		}
+	}
+
+	public void play() {
+		for (int i = 0; i < idx; i++) {
+
+			System.out.printf("%s의 %s를 실행중입니다.\n", list[i][0], list[i][1]);
+		}
+
+	}
+
+}
+
+public class Ch10Ex06 {
+
+	public static void main(String[] args) {
+		Music m1 = new Music("룰라", "3!4!");
+		Music m2 = new Music();
+		m2.setSinger("투투");
+		m2.setSong("1과2분의1");
+
+		Music m3 = new Music("이선희", "아~ 옛날이여");
+
+		
+		MusicPlayer mp = new MusicPlayer();
+		mp.add(m1);
+		mp.add(m2);
+		mp.add(m3); // 7곡까지 추가가능
+		mp.add(new Music("조용필", "바람의 노래"));
+		mp.add(new Music("아이유", "blooming"));
+
+		mp.play(); // 순서대로 실행되게
+
+	}
+	// 주말과제 전화번호부 구현 클래스 최대한 많이 만들어서
+
+}
