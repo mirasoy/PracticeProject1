@@ -1,0 +1,359 @@
+package org;
+
+import java.util.Scanner;
+
+class People {
+
+	private int idx;
+	private String name;
+	private String phone;
+
+	private int total = 0;
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
+	}
+
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public People() {
+		this(0, "no-name", "no-phone");
+
+	}
+
+	public People(int idx, String name, String phone) {
+		this.idx = idx;
+		this.name = name;
+		this.phone = phone;
+
+	}
+
+	public void addTotal() {
+		total++;
+	}
+
+	public void mintotal() {
+		total--;
+	}
+
+	@Override
+	public String toString() {
+		return "N0." + idx + ", 이름 : " + name + ", 번호 : " + phone;
+	}
+
+}
+
+class InputManager {
+	Scanner sc = new Scanner(System.in);
+
+	private int count = 0;
+
+	public int inputMenu() {
+		System.out.println("☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎");
+		System.out.println("기능을 선택하세요.");
+		System.out.println("1.입력 2.출력 3.검색 4.수정 5.삭제 6.종료");
+		return sc.nextInt();
+
+	}
+
+	public People inputInfo() {
+		People p = new People();
+		System.out.println("◇◇◇◇◇◇◇◇입력◇◇◇◇◇◇◇◇");
+		System.out.println("이름 : ");
+		p.setName(sc.next());
+		System.out.println("번호 : ");
+		p.setPhone(sc.next());
+		p.setIdx(count++);
+		System.out.println(p+" : 저장되었습니다.");
+		return p;
+
+	}
+
+	public String inputSearch(int top) {
+
+		if (top == 0) {
+			System.out.println("연락처가 비어있습니다.");
+			return null;
+		}
+		System.out.println("찾으실 이름 또는 번호를 입력하세요");
+		return sc.next();
+	}
+
+	public int inputSearch2() {
+
+		System.out.println("위와 같은 검색결과가 있습니다.");
+		System.out.println("다음 중 찾으시는 인덱스 넘버를 입력하세요");
+		return sc.nextInt();
+	}
+
+	public int inputModify() {
+
+		System.out.println("변경할 항목을 선택하세요");
+		System.out.println("1.이름  2.번호");
+		return sc.nextInt();
+	}
+
+	public String inputModify2(int i) {
+		switch (i) {
+		case 1:
+			System.out.println("변경할 이름을 입력하세요");
+			return sc.next();
+
+		case 2:
+			System.out.println("변경할 번호를 입력하세요");
+			return sc.next();
+
+		default:
+			System.out.println("잘못 입력하셨습니다.");
+			return null;
+
+		}
+
+	}
+
+}
+
+class Info {
+	private People[] pArr = new People[100];
+	private int top = 0;
+
+	public People[] getpArr() {
+		return pArr;
+	}
+
+	public int getTop() {
+		return top;
+	}
+
+	public void addPeople(People p) {
+		pArr[top++] = p;
+
+	}
+
+	public void minTop() {
+		top--;
+
+	}
+
+}
+
+class Output {
+
+	public void printList(People[] p, int top) {
+
+		for (int i = 0; i < top; i++) {
+			System.out.println(p[i]);
+		}
+
+	}
+
+}
+
+class Search {
+
+	public boolean searchPeople(People[] pArr, String searchname, int top) {
+
+		boolean flag = false;
+
+		if (searchname == null) {
+
+		}
+		for (int i = 0; i < top; i++) {
+			if (pArr[i].getName().equals(searchname)) {
+				flag = true;
+				System.out.println(pArr[i]);
+			}
+			if (pArr[i].getPhone().equals(searchname)) {
+				flag = true;
+				System.out.println(pArr[i]);
+
+			}
+
+		}
+		
+		if (top!=0 && !flag) {
+			System.out.println("일치하는 정보를 찾을 수 없습니다.");
+
+		}
+		return flag;
+	}
+
+	public int indexSeache(People[] pArr, int idx, int top) {
+		boolean flag = false;
+		for (int i = 0; i < top; i++) {
+			if (pArr[i].getIdx() == idx) {
+				flag = true;
+				System.out.println(pArr[i]);
+				return i;
+			}
+		}
+		System.out.println("일치하는 정보를 찾을 수 없습니다.");
+		return -1;
+
+	}
+
+	public int searchArrNum(People[] pArr, String searchname, int top) {
+
+		for (int i = 0; i < top; i++) {
+			if (pArr[i].getName().equals(searchname)) {
+				System.out.println(pArr[i]);
+
+				return i;
+			}
+		}
+		if (top != 0) {
+			System.out.println("일치하는 이름을 찾을 수 없습니다.");
+			return -1;
+		}
+		return -1;
+
+	}
+
+}
+
+class Modify {
+
+	public void modi(int i, People[] pArr, int parr, String modify) {
+
+		switch (i) {
+		case 1:
+			pArr[parr].setName(modify);
+			System.out.println(pArr[parr]+" : 다음과 같이 수정되었습니다.");
+			break;
+
+		case 2:
+			pArr[parr].setPhone(modify);
+			System.out.println(pArr[parr]+" : 다음과 같이 수정되었습니다.");
+			break;
+		default:
+		}
+
+	}
+
+}
+
+class Delete {
+
+	public void del(int arrNum, int top, People[] pArr) {
+		System.out.println("삭제되었습니다.");
+		for (int i = arrNum; i < top - 1; i++) {
+			pArr[i] = pArr[i + 1];
+			pArr[top] = null;
+		}
+
+	}
+
+}
+
+class Control {
+
+	InputManager ipm = new InputManager();
+	Info info = new Info();
+	Output op = new Output();
+	Search srch = new Search();
+	Modify mdf = new Modify();
+	Delete del = new Delete();
+
+	public Control() {
+		System.out.println("☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎☎");
+		System.out.println("연락처가 실행되었습니다.");
+		while (true) {
+			ctr();
+	
+		}
+	}
+
+	public void ctr() {
+
+		switch (ipm.inputMenu()) {
+
+		case 1:
+
+			info.addPeople(ipm.inputInfo());
+			break;
+
+		case 2:
+			op.printList(info.getpArr(), info.getTop());
+			break;
+
+		case 3:
+			srch.searchPeople(info.getpArr(), ipm.inputSearch(info.getTop()), info.getTop());
+			break;
+
+		case 4:
+
+			if (srch.searchPeople(info.getpArr(), ipm.inputSearch(info.getTop()), info.getTop())) {
+
+				if (info.getTop() != 0) {
+
+					int i = srch.indexSeache(info.getpArr(), ipm.inputSearch2(), info.getTop());
+					if (i != -1) {
+						int j = ipm.inputModify();
+
+						mdf.modi(j, info.getpArr(), i, ipm.inputModify2(j));
+					}
+				}
+			}
+			break;
+
+		case 5:
+			if (srch.searchPeople(info.getpArr(), ipm.inputSearch(info.getTop()), info.getTop())) {
+
+				if (info.getTop() != 0) {
+
+					int i = srch.indexSeache(info.getpArr(), ipm.inputSearch2(), info.getTop());
+					if (i != -1) {
+
+						del.del(i, info.getTop(), info.getpArr());
+
+						info.minTop();
+					}
+				}
+			}
+			break;
+
+		case 6:
+			System.out.println("연락처를 종료합니다.");
+			System.exit(0);
+break;
+		default:
+			System.out.println("잘못된 입력입니다.");
+		}
+	}
+}
+
+public class Run {
+
+	public static void main(String[] args) {
+
+		new Control();
+
+	}
+
+}
