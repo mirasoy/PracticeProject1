@@ -1,0 +1,68 @@
+package org.comstudy21.ch04.q;
+
+class TV {
+
+	private int size;
+
+	public TV(int size) {
+		this.size = size;
+	}
+
+	protected int getSize() {
+		return size;
+	}
+
+}
+
+class ColorTV extends TV {
+	public ColorTV(int size, int color) {
+		super(size);
+		this.color = color;
+
+	}
+	protected int getColor() {
+		return color;
+	}
+
+	private int color;
+
+	public void printProperty() {
+		System.out.println(color + "인치 " + super.getSize() + "컬러");
+
+	}
+
+}
+
+class IPTV extends ColorTV {
+	
+	public IPTV(String IP, int size, int color){
+		super(size,color);
+		this.IP = IP;
+		
+	}
+	
+	
+	private String IP;
+
+	public void printProperty() {
+		System.out.println("나의 IPTV는 " + IP + "주소의" + super.getSize() + "사이즈" + super.getColor()+"칼라");
+
+	}
+}
+
+
+
+
+
+
+
+
+
+	public class Chapter5_1 {
+
+	public static void main(String[] args) {
+	IPTV iptv = new IPTV("192.1.1.2", 32,2048);
+			iptv.printProperty();
+	}
+
+}
