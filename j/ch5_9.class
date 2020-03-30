@@ -1,0 +1,91 @@
+package org.comstudy21.ch04.q;
+
+import java.util.Scanner;
+
+interface Stack {
+
+	int length();
+
+	int capacity();
+
+	String pop();
+
+	boolean push(String val);
+}
+
+class StringStack implements Stack {
+	
+	private int top;
+	String[] stack;
+	
+	public StringStack(int i){
+		stack = new String[i];
+	}
+	
+
+
+	@Override
+	public int length() {
+		return top;
+	}
+
+	@Override
+	public int capacity() {
+		return stack.length;
+	}
+
+	public void inputSt(String s){
+		
+	}
+	
+	
+	@Override
+	public String pop() {
+		
+		--top;
+		return stack[top];
+	}
+
+	@Override
+	public boolean push(String val) {
+		
+		
+		if (top < stack.length)
+		{stack[top++] = val; return true ;}
+		else{return  false;}
+	}
+
+}
+
+public class Chapter5_9 {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("총 스택 저장 {공간의 크기 입력 >>");
+		StringStack ss = new StringStack(sc.nextInt());
+		
+				
+		
+		while(true) {
+			System.out.print("문자열 입력 >> ");
+			String str = sc.next();
+			if(str.equals("그만"))
+				break;
+		
+			boolean b = ss.push(str);			
+			if(b==false) {
+				System.out.println("스택이 꽉 차서 푸시 불가!");break;
+			}
+		
+		}
+		int top = ss.length();
+		for(int i = 0; i < top ; i++){
+			System.out.print(ss.pop()+"  ");			
+		}
+		
+
+		
+	}
+}
