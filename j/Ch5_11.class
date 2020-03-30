@@ -1,0 +1,76 @@
+import java.util.Scanner;
+
+abstract class Calc{
+	
+	protected int a,b;
+	void setValue(int a, int b) {
+		this.a=a;
+		this.b=b;
+		
+	}
+	abstract int clculate();
+	
+}
+
+
+class Add extends Calc{
+	public int clculate() {
+		
+		return a+b;
+		
+	}
+}
+class Sub extends Calc{
+	
+public int clculate() {
+		
+		return a-b;
+		
+	}
+	
+}
+class Mul extends Calc{
+public int clculate() {
+		
+		return a*b;
+		
+	}
+	
+	
+}class Div extends Calc{
+public int clculate() {
+		
+		return a/b;
+		
+	}
+	
+}
+public class Ch5_11 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("두 정수와 연산자를 입력하세요>>");
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		switch(sc.next()) {
+		case "+" : Add ca1 = new Add(); ca1.setValue(a, b); 
+		System.out.println(ca1.clculate());
+			break;
+		case "-" : Sub ca2 = new Sub();ca2.setValue(a, b); 
+		System.out.println(ca2.clculate());
+			break;
+		case "*" : Mul ca3 = new Mul();ca3.setValue(a, b); 
+		System.out.println(ca3.clculate());
+			break;
+		case "/" : Div ca4 = new Div();ca4.setValue(a, b); 
+		System.out.println(ca4.clculate());
+			break;
+		default : System.out.println("잘못된입력");
+		}
+	}
+	
+	
+	
+	
+	
+}
