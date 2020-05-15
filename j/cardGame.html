@@ -148,60 +148,72 @@
 
 
 
-            let first;
-            let second;
-            let no1;
-            let no2;
+            let card1;
+            let card2;
 
             function clickCard() {
 
                 //i가 바로 클릭한 그 배열의 그 카드임. 그럼 그 카드의 소스꺄꾸 꺄 꾸ㅠㅠㅠ꺄..
                 //그리고 그 i를 소스배열에 나오면 그 카드의 번호르 알 ! 수잇다!
+                
 
-                if (first === undefined) {
+                //카드가져와서 카드객체생성하기
+                if (card1 === undefined) {
                     for (let i = 0; i < imgArr.length; i++) {
                         if (imgArr[i] === this) {
+                            let tmpC = Math.floor(srcArr[i]/13)%2;
+                            let tmpN =Math.floor(srcArr[i]%13);
+                            card1 = new Card(tmpC,tmpN,i);
+
+
+                            //카드앞면으로 유지
                             imgArr[i].src = srcArr[i] + '.png';
-                            first = srcArr[i];
-                            no1 = i;
                         }
                     }
                 } else {
                     for (let i = 0; i < imgArr.length; i++) {
                         if (imgArr[i] === this) {
+                            let tmpC = Math.floor(srcArr[i]/13)%2;
+                            let tmpN =Math.floor(srcArr[i]%13);
+                            card2 = new Card(tmpC,tmpN,i);
+                           
                             imgArr[i].src = srcArr[i] + '.png';
-                            second = srcArr[i];
-                            no2 = i;
+                           
                         }
                     }
                 }
                 //같은지 비교하기
-                if (!(second === undefined)) {
+                if (!(card2 === undefined)) {
 
                     //같은빨강색인지//같은 숫자인지 비교
-                    if (Math.floor((first / 10) % 2) == (Math.floor(second / 10) % 2) && first % 13 == second % 13) {
-                        //같으면 >> 냅두고 
-                        alert("같음");
+                    if (card1.cardNumber==card2.cardNumber&&card1.cardColor==card2.cardColor) {
+                        // 같으면 >> 냅두고 
 
+                        //다르면
                     } else {
-                        // alert("다름");
-                        imgArr[no1].src = 'back.jpg';
-                        imgArr[no2].src = 'back.jpg';
+                        let one = card1.cardIdx;
+                        let two = card2.cardIdx;
+
+                        //잠깐보여주기
+                        setTimeout(function(){
+                        imgArr[one].src = 'back.jpg';
+                        imgArr[two].src = 'back.jpg';},1000
+                    );
                     }
-
-                    first = undefined;
-                    second = undefined;
-
+                   
+                    card1 = undefined;
+                    card2 = undefined;
                 }
 
 
             }
-            //1. 클릭하면 앞면이 보이게한다
+            //카드객체생성
+            function Card(cardColor, cardNumber, cardIdx){
+                this.cardColor = cardColor;
+                this.cardNumber = cardNumber;
+                this.cardIdx = cardIdx;
+            }
 
-
-
-            //2. 맞는지 비교한다.
-            //3. 
 
 
 
