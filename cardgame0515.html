@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        img {
+            width: 140px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <button onclick="front()">앞면</button>
+    <button onclick="back()">뒷면</button>
+    <button onclick="suffle()">섞기</button>
+
+    <div id="cardZone">
+
+    </div>
+
+
+
+    <script>
+        var txt = "";
+        // 카드배열하기
+        for (let i = 0; i < 52; i++) {
+
+            txt += "<img src=" + i + ".png>";
+        }
+
+        document.getElementById('cardZone').innerHTML = txt;
+
+
+
+
+
+
+
+        //이미지 위치 배열
+        var imgArr = document.getElementsByTagName('img');
+
+
+        //이미지 소스배열 
+        var srcArr = [];
+        for (let i = 0; i < 52; i++) {
+
+            srcArr[i] = i;
+        }
+
+        //앞면
+        function front() {
+            //이미지와 이미지 소스배열 매칭시키기
+            for (let i = 0; i < srcArr.length; i++) {
+                if (isBack(imgArr[i])) {
+                    imgArr[i].src = srcArr[i] + '.png';
+                }
+            }
+        }
+
+        //뒷면
+        function back() {
+            //이미지 전부 백으로 매칭시키가
+            for (let i = 0; i < srcArr.length; i++) {
+                imgArr[i].src = "back.jpg"
+            }
+        }
+
+
+        //섞기
+        function suffle() {
+            //이미지소스 배열 전부 섞기
+            for (let i = 0; i < srcArr.length; i++) {
+                rd = Math.floor(Math.random() * 51);
+
+                let tmp = srcArr[i];
+                srcArr[i] = srcArr[rd];
+                srcArr[rd] = tmp;
+            }
+            //front로 반영
+            front();
+        }
+
+
+        //카드에 이벤트 붙이기
+        for (let i = 0; i < imgArr.length; i++) {
+            imgArr[i].onclick = cardClick;
+        }
+
+
+
+
+
+        function isBack(card) {
+
+            return card.src == "file:///E:/MR/Js_Html_css/card_img/back.jpg";
+        }
+
+        function flip(card) {
+            if (isBack(card)) {
+                card.src = srcArr[1];
+            } else {
+                card.src = "back.jpg";
+            }
+        }
+
+        function compareCard(card1, card2) {
+
+        }
+
+
+
+        var firstCard = null;
+        var cardE;
+
+        function cardClick(e) {
+            //호출한카드를 킵해놓기
+            let card = this;
+            cardE = e;
+            // 성공카드인가요? = 카드의 이미지가 뒷면이 아닌가요?
+            if (!isBack(card)) {
+                // 그렇다 > 종료
+                return;
+            }
+            // 아니다
+            // fistCard가 비어있는가?
+
+            if (firstCardEmpty()) {
+                // firstCard가 비어있음
+                // 뒤집기(flip)
+                flip(card);
+                // fistCard에 card저장하기
+                firstCard = card;
+                // 종료
+                return;
+            } else {
+                // firstcard가 비어있지않음
+                // 뒤집기(flip)
+                flip(card);
+                //  fistCard랑 card비교하기
+                if (compareCard(firstCard, card)) {
+                    // 같다
+                    // 퍼스트카드 비워주기
+                    firstCard = null;
+                    // 종료
+                    return;
+
+                } else {}
+                //틀리다
+                //뒤집기(flip)
+                flip(firstCard);
+                flip(card);
+                // 퍼스트카드 비워주기
+                firstCard = null;
+                // 종료
+                return;
+
+            }
+
+        }
+    </script>
+
+
+</body>
+
+</html>
